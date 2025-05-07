@@ -1,0 +1,44 @@
+<div class="ticket-chat-container" [ngClass]="{'full-screen': isFullScreen}">
+  <div class="chat-header">
+    <button class="back-button" (click)="goBack()">
+      <i class="back-icon">←</i>
+    </button>
+    <div class="header-content">
+      <h2>{{ ticketTitle }}</h2>
+      <span class="ticket-status">פתוח</span>
+    </div>
+  </div>
+
+  <div class="chat-messages" #messageContainer>
+    <div
+      *ngFor="let message of messages"
+      class="message-wrapper"
+      [ngClass]="{
+        'user-message': message.sender === 'user',
+        'support-message': message.sender === 'support'
+      }"
+    >
+      <div class="message-content">
+        {{ message.content }}
+        <span class="message-time">
+          {{ message.timestamp | date:'HH:mm' }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input
+      type="text"
+      [(ngModel)]="newMessage"
+      (keyup.enter)="sendMessage()"
+      placeholder="הקלד הודעה..."
+    />
+    <button
+      (click)="sendMessage()"
+      [disabled]="!newMessage.trim()"
+    >
+      <i class="send-icon">➤</i>
+    </button>
+  </div>
+</div>

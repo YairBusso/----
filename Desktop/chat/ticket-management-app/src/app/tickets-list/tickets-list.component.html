@@ -1,0 +1,27 @@
+<div class="full-screen-container" dir="rtl">
+  <div class="header">
+    <span>כל התקלות</span>
+    <div class="header-icons">
+      <span>+</span>
+    </div>
+  </div>
+
+  <div class="tickets-list">
+    <div *ngFor="let ticket of tickets"
+         class="ticket-item"
+         (click)="openTicketChat(ticket)">
+      <div class="ticket-content">
+        <div class="ticket-header">
+          <span class="ticket-title">{{ ticket.title }}</span>
+        </div>
+        <div class="ticket-last-message">
+          {{ ticket.lastMessage }}
+        </div>
+      </div>
+      <div class="ticket-status-container">
+        <div class="ticket-status">{{ ticket.status }}</div>
+        <div class="ticket-time">{{ ticket.timestamp }}</div>
+      </div>
+    </div>
+  </div>
+</div>
